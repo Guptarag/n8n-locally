@@ -76,24 +76,24 @@ DB_POSTGRESDB_PASSWORD=postgres_pasword   # Change to secure password
 
 #### Encryption
 ```bash
-N8N_ENCRYPTION_KEY=encrytkey              # Change to secure random key
+N8N_ENCRYPTION_KEY=YOUR_ENCRYPTION_KEY_HERE    # Change to secure random key (use: openssl rand -base64 32)
 ```
 
 #### SMTP Configuration
 for email notifications add following environment variables 
 ```bash
 N8N_EMAIL_MODE=smtp
-N8N_SMTP_HOST=email-smtp.ap-south-1.amazonaws.com
+N8N_SMTP_HOST=smtp.example.com
 N8N_SMTP_PORT=587
 N8N_SMTP_SSL=false
-N8N_SMTP_USER=user                        # Your SMTP username
-N8N_SMTP_PASS=password                    # Your SMTP password
-N8N_SMTP_SENDER=jack                      # Your sender email
+N8N_SMTP_USER=YOUR_SMTP_USER               # Your SMTP username
+N8N_SMTP_PASS=YOUR_SMTP_PASSWORD           # Your SMTP password
+N8N_SMTP_SENDER=your-email@example.com     # Your sender email
 ```
 
 #### Webhook URL
 ```bash
-WEBHOOK_URL=https://n8n-staging.in        # Your public URL
+WEBHOOK_URL=https://your-domain.com        # Your public URL
 ```
 
 ## Key Features

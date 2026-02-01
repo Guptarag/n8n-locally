@@ -96,6 +96,31 @@ N8N_SMTP_SENDER=your-email@example.com     # Your sender email
 WEBHOOK_URL=https://your-domain.com        # Your public URL
 ```
 
+### Production Environment - Remote Servers
+
+For production deployments using remote PostgreSQL and Redis servers, update the following host configurations in all Dockerfiles (`DockerFile`, `DockerFile-webhook`, `DockerFile-worker`):
+
+#### Remote PostgreSQL Configuration
+```bash
+DB_POSTGRESDB_HOST=your-postgres-server.example.com  # Change from 'postgres' to remote host
+DB_POSTGRESDB_PORT=5432                              # Update if using non-standard port
+DB_POSTGRESDB_USER=your_production_user              # Production database user
+DB_POSTGRESDB_PASSWORD=your_secure_password          # Production database password
+```
+
+#### Remote Redis Configuration
+```bash
+QUEUE_BULL_REDIS_HOST=your-redis-server.example.com  # Change from 'redis' to remote host
+QUEUE_BULL_REDIS_PORT=6379                           # Update if using non-standard port
+```
+
+**Important Notes for Production**:
+- The default values (`postgres` and `redis`) are Docker container names for local development
+- For production, replace these with your actual remote server hostnames or IP addresses
+- Ensure your remote servers are accessible from your n8n containers
+- Consider using connection strings with authentication if your Redis server requires it
+- Update SSL/TLS settings as needed for secure connections to remote databases
+
 ## Key Features
 
 ### Execution Settings

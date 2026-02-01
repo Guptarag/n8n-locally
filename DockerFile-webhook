@@ -10,6 +10,11 @@ ENV QUEUE_BULL_REDIS_PORT=6379
 # Encryption 
 ENV N8N_ENCRYPTION_KEY=YOUR_ENCRYPTION_KEY_HERE
 
+
+
+# Workflow Node settings
+ENV NODES_EXCLUDE="[\"n8n-nodes-base.gmail\",\"n8n-nodes-base.gmailTrigger\"]"
+
 # Database
 ENV DB_TYPE=postgresdb
 ENV DB_POSTGRESDB_HOST=postgres

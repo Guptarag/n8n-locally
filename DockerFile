@@ -28,7 +28,7 @@ ENV WORKFLOWS_DEFAULT_NAME=n8n-{{DATE}}
 
 
 # Workflow Node settings
-ENV NODES_EXCLUDE=n8n-nodes-base.gmail
+ENV NODES_EXCLUDE="[\"n8n-nodes-base.gmail\",\"n8n-nodes-base.gmailTrigger\"]"
 
 
 # Execution

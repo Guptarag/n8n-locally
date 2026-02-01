@@ -119,8 +119,40 @@ WEBHOOK_URL=https://your-domain.com        # Your public URL
 - **SSL**: Reject unauthorized enabled
 
 ### Node Settings
-- **Excluded Nodes**: `n8n-nodes-base.gmail`
+- **Excluded Nodes**: Gmail and Gmail Trigger nodes
 - **Timezone**: Asia/Kolkata
+
+#### Excluding Nodes
+
+The `NODES_EXCLUDE` environment variable allows you to hide specific nodes from the n8n UI and prevent them from being executed. This is useful for security, compliance, or organizational requirements.
+
+**Format**: Must be a **JSON string** (not a plain array) containing a JSON array of node names. The outer quotes and escaped inner quotes are required.
+
+**Example Configuration**:
+```dockerfile
+ENV NODES_EXCLUDE="[\"n8n-nodes-base.gmail\",\"n8n-nodes-base.gmailTrigger\"]"
+```
+
+**Current Excluded Nodes**:
+- `n8n-nodes-base.gmail` - Gmail node
+- `n8n-nodes-base.gmailTrigger` - Gmail Trigger node
+
+**To exclude additional nodes**:
+1. Find the node name (format: `n8n-nodes-base.nodeName`)
+2. Add it to the JSON array in all three Dockerfiles:
+   - `DockerFile` (main container)
+   - `DockerFile-worker` (worker container)
+   - `DockerFile-webhook` (webhook container)
+3. Rebuild the images and restart containers
+4. Clear browser cache (Ctrl+Shift+R or Cmd+Shift+R) to see changes
+
+**Common nodes to exclude for security**:
+```dockerfile
+# Example: Exclude command execution and file system nodes
+ENV NODES_EXCLUDE="[\"n8n-nodes-base.executeCommand\",\"n8n-nodes-base.readWriteFile\",\"n8n-nodes-base.localFileTrigger\"]"
+```
+
+**Important**: The `NODES_EXCLUDE` setting must be identical across all n8n containers (main, worker, webhook) to ensure consistent behavior.
 
 ## Building Images
 
